@@ -11,6 +11,7 @@ on:
       - 'ios/**'
       - 'package.json'
       - 'capacitor.config.json'
+      - '.github/workflows/**'
 
 jobs:
   build-ios:
