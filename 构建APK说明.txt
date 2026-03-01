@@ -1,0 +1,33 @@
+========================================
+企业记账报税 - 安卓 APK 构建说明
+========================================
+
+当前环境无法直接构建 APK（缺少 Android SDK）。
+请在有 Android Studio 的电脑上按以下步骤操作：
+
+一、解压并进入项目
+  unzip baoshui-android-source.zip
+  cd baoshui
+
+二、安装依赖（若未安装）
+  npm install
+
+三、配置环境变量
+  export ANDROID_HOME=$HOME/Android/Sdk
+  （Windows: 在系统环境变量中设置 ANDROID_HOME）
+
+四、构建 APK
+  npm run build
+  npm run cap:sync
+  npm run cap:open
+
+  在 Android Studio 中：
+  Build → Build Bundle(s) / APK(s) → Build APK(s)
+
+五、APK 输出位置
+  android/app/build/outputs/apk/debug/app-debug.apk
+
+六、打包压缩
+  zip baoshui-apk.zip android/app/build/outputs/apk/debug/app-debug.apk
+
+========================================

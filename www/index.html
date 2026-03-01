@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <title>企业记账报税</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- 顶部装饰 -->
+    <div class="header-bg"></div>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <!-- 企业记账报税模块 -->
+      <section class="card intro-card">
+        <span class="badge">企业记账报税</span>
+        <p class="intro-text">首次使用，客服指导您迁入旧账、完成记账报税事项，轻松上手</p>
+        <button class="btn-register" id="btnRegister">注册/登录</button>
+        <a href="/download" class="link-download">下载 APP</a>
+      </section>
+
+      <!-- 套餐价格模块 -->
+      <section class="card price-card">
+        <span class="badge">套餐价格</span>
+        <div class="price-content">
+          <div class="price-text">
+            <p>个体户/小规模纳税人: 29.99元/月、69.99元/月;</p>
+            <p>一般纳税人: 99.99元/月、149元/月</p>
+          </div>
+          <span class="price-icon">¥</span>
+        </div>
+        <a href="#" class="link-detail">查看套餐价格详情</a>
+      </section>
+
+      <!-- 自记账APP怎么用 -->
+      <section class="card usage-card">
+        <span class="badge">自记账APP怎么用</span>
+        <div class="usage-content">
+          <div class="usage-text">
+            <p>企业无业务,每个月自动记账报税;</p>
+            <p>企业有业务,每个月花5到10分钟完成记账,自动报税</p>
+          </div>
+          <button class="btn-video" aria-label="播放视频">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- 底部导航栏 -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>主页</span>
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        <span>聊天</span>
+      </a>
+      <a href="#" class="nav-item nav-center">
+        <span class="nav-add">+</span>
+        <span>记账</span>
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span>发现</span>
+      </a>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        <span>我的</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- 注册/登录弹窗 -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>注册/登录</h2>
+        <button class="btn-close" id="btnCloseModal" aria-label="关闭">&times;</button>
+      </div>
+      <form class="register-form" id="registerForm">
+        <div class="form-group">
+          <label for="phone">手机号</label>
+          <input type="tel" id="phone" placeholder="请输入手机号" required maxlength="11" pattern="[0-9]{11}">
+        </div>
+        <div class="form-group">
+          <label for="code">验证码</label>
+          <div class="input-with-btn">
+            <input type="text" id="code" placeholder="请输入验证码" required maxlength="6">
+            <button type="button" class="btn-code" id="btnSendCode">获取验证码</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">登录 / 注册</button>
+      </form>
+      <p class="form-tip">未注册的手机号将自动创建账号</p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

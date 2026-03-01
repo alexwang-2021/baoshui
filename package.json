@@ -1,0 +1,24 @@
+{
+  "name": "baoshui",
+  "version": "1.0.0",
+  "description": "企业记账报税应用的手机端页面，支持注册/登录功能。",
+  "main": "app.js",
+  "scripts": {
+    "build": "cp index.html styles.css app.js config.js www/",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:sync:android": "npm run build && npx cap sync android",
+    "cap:sync:ios": "npm run build && npx cap sync ios",
+    "cap:open": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.1.0",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/core": "^8.1.0",
+    "@capacitor/ios": "^8.1.0"
+  }
+}

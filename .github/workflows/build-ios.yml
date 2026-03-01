@@ -1,0 +1,44 @@
+# 云 Mac 构建 iOS - 使用 GitHub Actions (macOS runner)
+# 推送代码后自动构建，产物可在 Actions 页面下载
+name: Build iOS
+
+on:
+  workflow_dispatch:  # 手动触发
+  push:
+    branches: [main, master]
+    paths:
+      - 'www/**'
+      - 'ios/**'
+      - 'package.json'
+      - 'capacitor.config.json'
+
+jobs:
+  build-ios:
+    runs-on: macos-latest  # 云 Mac
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Capacitor iOS
+        run: |
+          npm run build
+          npx cap sync ios
+
+      - name: Build for simulator
+        run: |
+          cd ios/App
+          xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -arch arm64 -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-simulator-build
+          path: ios/App/build/Build/Products/Debug-iphonesimulator/App.app

@@ -1,0 +1,8 @@
+{
+  "appId": "com.baoshui.app",
+  "appName": "企业记账报税",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "http"
+  }
+}
