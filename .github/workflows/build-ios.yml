@@ -1,5 +1,5 @@
 # 云 Mac 构建 iOS - 使用 GitHub Actions (macOS runner)
-# 推送代码后自动构建，产物可在 Actions 页面下载
+# 推送代码后自动构建，产物可在 Actions 页面或 Releases 下载
 name: Build iOS
 
 on:
@@ -37,8 +37,27 @@ jobs:
           cd ios/App
           xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -arch arm64 -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
+      - name: Zip App for release
+        run: |
+          cd ios/App/build/Build/Products/Debug-iphonesimulator
+          zip -r $GITHUB_WORKSPACE/App-simulator.zip App.app
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ios-simulator-build
           path: ios/App/build/Build/Products/Debug-iphonesimulator/App.app
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ios-${{ github.run_number }}
+          name: iOS 构建 #${{ github.run_number }}
+          body: |
+            企业记账报税 - iOS 模拟器版本
+            - 仅适用于 Mac 上的 iOS 模拟器
+            - 真机安装需在 Mac 上用 Xcode 构建 IPA
+          files: App-simulator.zip
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
